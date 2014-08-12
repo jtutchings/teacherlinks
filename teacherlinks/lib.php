@@ -31,7 +31,7 @@ function teacherlinks_get_other_cohorts_tab($course , $tagid) {
 
     $teachroleid = teacherlinks_get_editingteacher_roleid();
 
-    $coursecontext = get_context_instance(CONTEXT_COURSE, $course->id);
+    $coursecontext = context_course::instance($course->id);
     $isteacher = user_has_role_assignment($USER->id, $teachroleid, $coursecontext->id);
 
     $tabtext = html_writer::start_tag('div', array('id' => $tagid, ));
@@ -71,7 +71,7 @@ function teacherlinks_get_other_cohorts_tab($course , $tagid) {
             if ($crs->id == $course->id) {
                 continue;
             }
-            $coursecontext = get_context_instance(CONTEXT_COURSE, $crs->id);
+            $coursecontext = context_course::instance($crs->id);
             $row = new html_table_row();
 
             $othercourse = new html_table_cell($crs->shortname);
